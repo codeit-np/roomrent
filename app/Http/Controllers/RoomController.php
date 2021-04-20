@@ -25,7 +25,7 @@ class RoomController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.ads.create');
     }
 
     /**
@@ -36,7 +36,16 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $room = new Room();
+        $room-> name=$request->name;
+        $room-> feature=$request->feature;
+        $room-> description=$request->description;
+        $room-> location=$request->location;
+        $room-> size=$request->size;
+        $room-> price=$request->price;
+        $room-> contact=$request->contact;
+        $room->save();
+        return redirect()->back();
     }
 
     /**

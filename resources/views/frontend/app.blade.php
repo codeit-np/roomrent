@@ -39,6 +39,10 @@
             </div>
           </nav>
     </div>
+    {{-- for sale --}}
+    <a href="/rooms" class="btn btn-primary">For Sale</a> 
+    {{-- for rent  --}}
+    <a href="/rooms/create" class="btn btn-primary">For rent</a>
     {{-- Slide --}}
     @yield('slide')
     {{-- Main --}}
