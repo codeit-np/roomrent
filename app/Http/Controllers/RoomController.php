@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use App\Models\RoomImage;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -36,15 +37,38 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->validate([
+            'location' => 'required',
+            'contact' => 'required',
+            'price' => 'required',
+            'size' => 'required',
+            'feature' => 'required',
+        ]);
         $room = new Room();
-        $room-> name=$request->name;
-        $room-> feature=$request->feature;
-        $room-> description=$request->description;
-        $room-> location=$request->location;
-        $room-> size=$request->size;
-        $room-> price=$request->price;
-        $room-> contact=$request->contact;
+        $room->location = $request->location;
+        $room->description = $request->description;
+        $room->size = $request->size;
+        $room->price = $request->price;
+        $room->contact = $request->contact;
+        $room->user_id = $request->user()->id;
+        if($request->hasFile('feature')){
+            $data = $request->feature;
+            $newName = time() . $data->getClientOriginalName();
+            $data->move('room',$newName);
+            $room->feature = 'room/' . $newName;
+        } 
         $room->save();
+
+        if($request->hasFile('images')){
+            foreach($request->images as $image){
+                $roomImage = new RoomImage();
+                $newName = time() . $image->getClientOriginalName();
+                $image->move('room',$newName);
+                $roomImage->name = 'room/' . $newName;
+                $roomImage->room_id = $room->id;
+                $roomImage->save();
+            }
+        }
         return redirect()->back();
     }
 

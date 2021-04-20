@@ -5,38 +5,56 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <form action="/rooms" method="post">
-                    @csrf
-                    <div class="form-group">
-                        <label for="Name">Name</label>
-                        <input id="Name" class="form-control" type="text" name="name">
+                <div class="card">
+                    <div class="card-header">
+                        <a href="/rooms" class="btn btn-primary btn-sm">Back</a>
                     </div>
-                    <div class="form-group">
-                        <label for="location">Location</label>
-                        <input id="location" class="form-control" type="text" name="location">
+                    <div class="card-body">
+                        <form action="/rooms" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <input id="location" class="form-control" type="text" name="location">
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="Room Size">Room Size</label>
+                                        <input id="Room Size" class="form-control" type="text" name="size">
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="price">Price</label>
+                                        <input id="price" class="form-control" type="text" name="price">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                           <div class="form-group">
+                               <label for="description">Short Description</label>
+                               <textarea id="description" class="form-control" name="description" rows="3"></textarea>
+                           </div>
+
+                            <div class="form-group">
+                                <label for="contact">Contact</label>
+                                <input id="contact" class="form-control" type="text" name="contact">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="feature">Featured Image</label>
+                                <input id="feature" class="form-control-file" type="file" name="feature">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="images">Room Images</label>
+                                <input id="images" class="form-control-file" type="file" name="images[]" multiple>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="Room Size">Room Size</label>
-                        <input id="Room Size" class="form-control" type="text" name="size">
-                    </div>
-                    <div class="form-group">
-                        <label for="price">Price</label>
-                        <input id="price" class="form-control" type="text" name="price">
-                    </div>
-                    <div class="form-group">
-                        <label for="description">description</label>
-                        <input id="description" class="form-control" type="text" name="description">
-                    </div>
-                    <div class="form-group">
-                        <label for="feature">feature</label>
-                        <input id="feature" class="form-control" type="text" name="feature">
-                    </div>
-                    <div class="form-group">
-                        <label for="contact">Contact</label>
-                        <input id="contact" class="form-control" type="text" name="mobile_no">
-                    </div>
-                    <button type="submit" style="btn btn-primary">Submit</button>
-                </form>
+                </div>
             </div>
         </div>
     </div>
