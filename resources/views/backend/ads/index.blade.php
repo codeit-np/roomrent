@@ -24,11 +24,17 @@
                             <tr>
                                 <td>{{$room->id}}</td>
                                 <td>{{$room->name}}</td>
-                                <td>{{$room->locaton}}</td>
+                                <td>{{$room->location}}</td>
                                 <td>{{$room->size}}</td>
                                 <td>{{$room->price}}</td>
                                 <td>{{$room->description}}</td>
+                                <td>{{$room->feature}}</td>
                                 <td>{{$room->contact}}</td>
+                                <td>
+                                    <a href="/rooms/{{ $rooms->id }}/edit" class=" btn btn-primary">edit</a>
+                                    <a href="" class="btn btn-primary">show</a>
+                                    <a href="" class="btn btn-primary">delete</a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
