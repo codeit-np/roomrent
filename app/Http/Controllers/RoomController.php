@@ -91,7 +91,8 @@ class RoomController extends Controller
      */
     public function edit($id)
     {
-        //
+        $room = Room::find($id);
+        return view('backend.ads.edit',compact('room'));
     }
 
     /**
