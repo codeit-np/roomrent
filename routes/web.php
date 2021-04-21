@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\RoomController;
+use App\Models\Room;
+use App\Models\RoomImage;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +17,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('frontend.pages.index');
+    $rooms = Room::orderby('id','desc')->get();
+    return view('frontend.pages.index',compact('rooms'));
+});
+
+Route::get('/roomdetails/{id}',function($id){
+    $room = Room::find($id);
+    $images = RoomImage::where('room_id',$id)->get();
+    return view('frontend.pages.roomdetail',compact('images','room'));
 });
 
 Auth::routes();

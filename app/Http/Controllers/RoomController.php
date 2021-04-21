@@ -91,7 +91,9 @@ class RoomController extends Controller
      */
     public function edit($id)
     {
-        //
+        $room = Room::find($id);
+        $images = RoomImage::where('room_id',$id)->get();
+        return view('backend.ads.edit',compact('room','images'));
     }
 
     /**
@@ -103,7 +105,39 @@ class RoomController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'location' => 'required',
+            'contact' => 'required',
+            'price' => 'required',
+            'size' => 'required',
+           
+        ]);
+        $room = Room::find($id);
+        $room->location = $request->location;
+        $room->description = $request->description;
+        $room->size = $request->size;
+        $room->price = $request->price;
+        $room->contact = $request->contact;
+        $room->user_id = $request->user()->id;
+        if($request->hasFile('feature')){
+            $data = $request->feature;
+            $newName = time() . $data->getClientOriginalName();
+            $data->move('room',$newName);
+            $room->feature = 'room/' . $newName;
+        } 
+        $room->update();
+
+        if($request->hasFile('images')){
+            foreach($request->images as $image){
+                $roomImage = new RoomImage();
+                $newName = time() . $image->getClientOriginalName();
+                $image->move('room',$newName);
+                $roomImage->name = 'room/' . $newName;
+                $roomImage->room_id = $room->id;
+                $roomImage->save();
+            }
+        }
+        return redirect()->back();
     }
 
     /**

@@ -8,16 +8,19 @@
       <div class="container">
         <h1>Latest Listing</h1>
           <div class="row">
-            <div class="col-md-4">
-              <div class="card" style="width: 18rem;">
-                <img src="https://images.pexels.com/photos/892618/pexels-photo-892618.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">More Details</a>
+            @foreach ($rooms as $room)
+              <div class="col-md-3">
+                <div class="card">
+                  <div style="background-image: url('{{ asset($room->feature) }}');height: 200px; background-position:center; background-size: cover">
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">{{ $room->location }}</h5>
+                    <p class="card-text">{{ Str::limit($room->description,80) }}</p>
+                    <a href="/roomdetails/{{ $room->id }}" class="btn btn-primary btn-sm">More Details</a>
+                  </div>
                 </div>
               </div>
-            </div>
+            @endforeach
           </div>
       </div>
     </div>

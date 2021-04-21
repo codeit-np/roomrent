@@ -11,6 +11,12 @@
     <title>Hello, world!</title>
 
     <link rel="stylesheet" href="{{ asset('css/mystyle.css') }}">
+
+    <style>
+      .comment{
+        height: 120px;
+      }
+    </style>
   </head>
   <body>
     {{-- Top Nav --}}
@@ -39,10 +45,7 @@
             </div>
           </nav>
     </div>
-    {{-- for sale --}}
-    <a href="/rooms" class="btn btn-primary">For Sale</a> 
-    {{-- for rent  --}}
-    <a href="/rooms/create" class="btn btn-primary">For rent</a>
+
     {{-- Slide --}}
     @yield('slide')
     {{-- Main --}}
