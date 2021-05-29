@@ -33,7 +33,6 @@
                                         <td>{{ $room->contact }}</td>
                                         <td>
                                             <a href="/rooms/{{ $room->id }}/edit" class=" btn btn-primary btn-sm">edit</a>
-                                            <a href="" class="btn btn-primary btn-sm">show</a>
                                             <a href="" class="btn btn-primary btn-sm">delete</a>
                                         </td>
                                     </tr>

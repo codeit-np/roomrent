@@ -26,7 +26,7 @@
 
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="price">Price</label>
+                                        <label for="price">Price (Rs) </label>
                                         <input id="price" class="form-control" type="text" name="price">
                                     </div>
                                 </div>
